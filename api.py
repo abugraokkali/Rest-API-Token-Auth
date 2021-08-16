@@ -16,11 +16,8 @@ def token_required(f):
             return jsonify({'message' : 'Token is missing!'}), 403
 
         try: 
-            print(token)
-            data = jwt.decode(token, app.config['SECRET_KEY'],algorithms="HS256")
+            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms="HS256")
         except Exception as inst:
-            print(type(inst))    # the exception instance
-            print(inst.args)     # arguments stored in .args
             print(inst)
             return jsonify({'message' : 'Token is invalid!'}), 403
 
